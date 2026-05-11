@@ -1,1 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Calculadora Pro</title>
 
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(135deg, #141e30, #243b55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.app {
+    background: #fff;
+    width: 340px;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#pantalla {
+    width: 100%;
+    font-size: 24px;
+    padding: 15px;
+    border: none;
+    background: #f1f1f1;
+    border-radius: 10px;
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.botones {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+button {
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: #e0e0e0;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #cfcfcf;
+    transform: scale(1.05);
+}
+
+.operador {
+    background: #ffb74d;
+}
+
+.igual {
+    background: #4caf50;
+    color: white;
+}
+
+.borrar {
+    background: #e57373;
+    color: white;
+}
+
+.historial {
+    margin-top: 10px;
+    max-height: 100px;
+    overflow-y: auto;
+    font-size: 14px;
+    background: #f9f9f9;
+    padding: 8px;
+    border-radius: 10px;
+}
+</style>
+</head>
+<script>
+let pantalla = document.getElementById("pantalla");
+let historial = document.getElementById("historial");
+
+function agregar(valor){
+    pantalla.value += valor;
+}
+
+function borrar(){
+    pantalla.value = "";
+}
+
+function backspace(){
+    pantalla.value = pantalla.value.slice(0, -1);
+}
+
+function calcular(){
+    try {
+        let resultado = eval(pantalla.value);
+        historial.innerHTML += `<div>${pantalla.value} = ${resultado}</div>`;
+        pantalla.value = resultado;
+    } catch {
+        pantalla.value = "Error";
+    }
+}
+
+// teclado físico
+document.addEventListener("keydown", function(e){
+    if (!isNaN(e.key) || "+-*/.".includes(e.key)) {
+        agregar(e.key);
+    }
+
+    if (e.key === "Enter") calcular();
+
+    if (e.key === "Backspace") backspace();
+});
+</script>
+
+<body>
+
+<div class="app">
+
+<h2>Calculadora Pro</h2>
+
+<input id="pantalla" disabled>
+
+<div class="botones">
+
+    <button class="borrar" onclick="borrar()">C</button>
+    <button onclick="backspace()">←</button>
+    <button onclick="agregar('/')">/</button>
+    <button onclick="agregar('*')" class="operador">*</button>
+
+    <button onclick="agregar('7')">7</button>
+    <button onclick="agregar('8')">8</button>
+    <button onclick="agregar('9')">9</button>
+    <button onclick="agregar('-')" class="operador">-</button>
+
+    <button onclick="agregar('4')">4</button>
+    <button onclick="agregar('5')">5</button>
+    <button onclick="agregar('6')">6</button>
+    <button onclick="agregar('+')" class="operador">+</button>
+
+    <button onclick="agregar('1')">1</button>
+    <button onclick="agregar('2')">2</button>
+    <button onclick="agregar('3')">3</button>
+    <button onclick="calcular()" class="igual">=</button>
+
+    <button onclick="agregar('0')" style="grid-column: span 2;">0</button>
+    <button onclick="agregar('.')">.</button>
+
+</div>
+
+<div class="historial" id="historial"></div>
+
+</div>

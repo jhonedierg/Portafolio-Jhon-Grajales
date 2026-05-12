@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Movie App</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#111;
+    color:white;
+}
+
+header{
+    background:#e50914;
+    padding:20px;
+    text-align:center;
+}
+
+h1{
+    margin:0;
+}
+
+.buscador{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin:20px;
+}
+
+input{
+    padding:12px;
+    width:300px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+}
+
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    background:#e50914;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#b20710;
+}
+
+#contenedor{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    padding:20px;
+}
+
+.card{
+    background:#1c1c1c;
+    border-radius:15px;
+    overflow:hidden;
+    transition:0.3s;
+    box-shadow:0 5px 15px rgba(0,0,0,0.4);
+}
+
+.card:hover{
+    transform:scale(1.03);
+}
+
+.card img{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+}
+
+.info{
+    padding:15px;
+}
+
+.info h3{
+    margin:0;
+    font-size:20px;
+}
+
+.info p{
+    margin:5px 0;
+    color:#ccc;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+    <h1>🎬 Movie App</h1>
+</header>
+
+<div class="buscador">
+
+    <input 
+        type="text" 
+        id="buscar" 
+        placeholder="Buscar película..."
+    >
+
+    <button onclick="buscarPeliculas()">
+        Buscar
+    </button>
+
+</div>
+
+<div id="contenedor"></div>
+
+<script>
+
+async function buscarPeliculas(){
+
+    let pelicula = document.getElementById("buscar").value;
+
+    let contenedor = document.getElementById("contenedor");
+
+    if(pelicula === ""){
+        contenedor.innerHTML = "<p>Escribe una película</p>";
+        return;
+    }
+
+    try{
+
+        let apiKey = "28119503";
+
+        let respuesta = await fetch(
+            `https://www.omdbapi.com/?s=${pelicula}&apikey=${apiKey}`
+        );
+
+        let datos = await respuesta.json();
+
+        if(datos.Response === "False"){
+            contenedor.innerHTML = "<p>No se encontraron películas</p>";
+            return;
+        }
+
+        contenedor.innerHTML = "";
+
+        datos.Search.forEach(movie => {
+
+            contenedor.innerHTML += `
+            
+            <div class="card">
+
+                <img src="${movie.Poster}" alt="poster">
+
+                <div class="info">
+
+                    <h3>${movie.Title}</h3>
+
+                    <p>📅 ${movie.Year}</p>
+
+                    <p>🎞️ ${movie.Type}</p>
+
+                </div>
+
+            </div>
+
+            `;
+
+        });
+
+    }catch(error){
+
+        contenedor.innerHTML = "<p>Error al buscar películas</p>";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

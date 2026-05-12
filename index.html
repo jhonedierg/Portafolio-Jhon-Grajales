@@ -1,106 +1,167 @@
 <!DOCTYPE html>
-
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<title>Portafolio Jhon</title>
+    <title>Portafolio Jhon</title>
 
-<link rel="stylesheet" href="style.css">
-```
+    <link rel="stylesheet" href="style.css">
 
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
 
-```
-<!-- HEADER -->
-<header>
+    <!-- HEADER -->
+    <header>
 
-    <nav>
-        <h2>Jhon Edier</h2>
+        <nav>
+            <h2>Jhon Edier</h2>
 
-        <ul>
-            <li>Inicio</li>
-            <li>Sobre mí</li>
-            <li>Proyectos</li>
-            <li>Contacto</li>
-        </ul>
-    </nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#sobre-mi">Sobre mí</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
 
-    <div class="hero">
+        <div class="hero">
 
-        <h1>Desarrollador Web Junior</h1>
+            <h1>Desarrollador Web Junior</h1>
+
+            <p>
+                Aprendiz ADSO del SENA apasionado por el desarrollo web y la tecnología.
+            </p>
+
+            <button onclick="location.href='#contacto'">
+                Contáctame
+            </button>
+
+        </div>
+
+    </header>
+
+    <!-- SOBRE MI -->
+    <section id="sobre-mi" class="sobre-mi">
+
+        <h2>Sobre mí</h2>
 
         <p>
-            Aprendiz ADSO del SENA apasionado por el desarrollo web y la tecnología.
+            Actualmente me encuentro aprendiendo HTML, CSS, SQL y desarrollo web.
+            Busco crecer profesionalmente en el mundo de la programación y la tecnología.
         </p>
 
-        <button>Contáctame</button>
+    </section>
 
-    </div>
+    <!-- HABILIDADES -->
+    <section class="habilidades">
 
-</header>
+        <h2>Habilidades</h2>
 
-<!-- SOBRE MI -->
-<section class="sobre-mi">
+        <div class="cards">
 
-    <h2>Sobre mí</h2>
+            <div class="card">HTML</div>
+            <div class="card">CSS</div>
+            <div class="card">SQL</div>
+            <div class="card">GitHub</div>
 
-    <p>
-        Actualmente me encuentro aprendiendo HTML, CSS, SQL y desarrollo web.
-        Busco crecer profesionalmente en el mundo de la programación y la tecnología.
-    </p>
+        </div>
 
-</section>
+    </section>
 
-<!-- HABILIDADES -->
-<section class="habilidades">
+    <!-- PROYECTOS -->
+    <section id="proyectos" class="proyectos">
 
-    <h2>Habilidades</h2>
-
-    <div class="cards">
-
-        <div class="card">HTML</div>
-        <div class="card">CSS</div>
-        <div class="card">SQL</div>
-        <div class="card">GitHub</div>
-
-    </div>
-
-</section>
-
-<!-- PROYECTOS -->
-<section class="proyectos">
-
-    <h2>Proyectos</h2>
-
-    <div class="cards">
+        <h2>Proyectos</h2>
 
         <div class="card">
-            Landing Page Personal
+            <h3>Formulario de Contacto</h3>
+
+            <p>
+                Formulario con validación en JavaScript.
+            </p>
+
+            <button onclick="location.href='formulario.html'">
+                Ver proyecto
+            </button>
         </div>
 
         <div class="card">
-            Sistema Inventario Básico
+            <h3>App del Clima</h3>
+
+            <p>
+                Aplicación web que consume una API del clima en tiempo real,
+                incluyendo geolocalización e interfaz dinámica.
+            </p>
+
+            <button onclick="location.href='clima.html'">
+                Ver proyecto
+            </button>
         </div>
 
-    </div>
+        <div class="card">
+            <h3>Lista de Tareas</h3>
 
-</section>
+            <p>
+                Aplicación para organizar tareas con JavaScript.
+            </p>
 
-<!-- FOOTER -->
-<footer>
+            <button onclick="location.href='todo.html'">
+                Ver proyecto
+            </button>
+        </div>
 
-    <p>
-        © 2026 - Jhon Edier
-    </p>
+        <div class="card">
+            <h3>Calculadora Web</h3>
 
-</footer>
-```
+            <p>
+                Proyecto realizado con HTML, CSS y JavaScript.
+            </p>
+
+            <button onclick="location.href='calculadora.html'">
+                Ver proyecto
+            </button>
+        </div>
+
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="contacto">
+
+        <h2>Contacto</h2>
+
+        <div class="iconos-contacto">
+
+            <a href="https://github.com/jhonedierg" target="_blank">
+                <i class="fa-brands fa-github"></i>
+            </a>
+
+            <a href="mailto:Jhon297.com@hotmail.com">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+
+            <a href="#">
+                <i class="fa-brands fa-linkedin"></i>
+            </a>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            © 2026 - Jhon Edier
+        </p>
+
+    </footer>
+
+    <script src="script.js"></script>
 
 </body>
 
